@@ -1,0 +1,34 @@
+{
+    "logs": [
+        {
+            "outputFile": "/Users/kfiross/Documents/Projects/flutter/Apps/goal_task/build/path_provider_android/intermediates/incremental/mergeDebugResources/merged.dir/values-as/values-as.xml",
+            "map": [
+                {
+                    "source": "/Users/kfiross/.gradle/caches/transforms-2/files-2.1/95ff5a5bb74d3c5351adc18eb87f0d8e/core-1.6.0/res/values-as/values-as.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/Users/kfiross/Documents/Projects/flutter/Apps/goal_task/build/path_provider_android/intermediates/res/merged/debug/values-as/values-as.xml",
+            "map": [
+                {
+                    "source": "/Users/kfiross/.gradle/caches/transforms-2/files-2.1/95ff5a5bb74d3c5351adc18eb87f0d8e/core-1.6.0/res/values-as/values-as.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        }
+    ]
+}

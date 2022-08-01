@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1094211106497",
+    "project_id": "goaltask-21363",
+    "storage_bucket": "goaltask-21363.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1094211106497:android:dc3ed6ea01ca5aeb33c640",
+        "android_client_info": {
+          "package_name": "com.goaltask.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1094211106497-hue48p3fcr0de67v2blgnq3d3p5okac2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBspe_KdhcM_d9XvT-ac9_VZLS4nb9TIQA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1094211106497-hue48p3fcr0de67v2blgnq3d3p5okac2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
