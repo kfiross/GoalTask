@@ -1,4 +1,0 @@
-io/flutter/plugins/GeneratedPluginRegistrant.java
- io.flutter.plugins.GeneratedPluginRegistrant
-com/goaltask/app/BuildConfig.java
- com.goaltask.app.BuildConfig
