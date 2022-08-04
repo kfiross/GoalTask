@@ -9,6 +9,9 @@ import 'package:goal_task/src/core/injector_container.dart';
 import 'package:sealed_flutter_bloc/sealed_flutter_bloc.dart';
 
 import 'state/home_screen_events.dart';
+import 'package:goal_task/src/core/utils/router.dart';
+
+// import 'package:goal_task/src/application/presentation/screens/goal_screen/goal_screen.dart';
 
 typedef TasksBlocBuilder = SealedBlocBuilder4<HomeCubit, BaseHomeState, Initial,
     Loading, Success, Failure>;
@@ -31,7 +34,7 @@ class HomeScreen extends StatelessWidget {
         body: Column(
           children: [
             _appBar(),
-            Expanded(child: _body()),
+            Expanded(child: _body((context))),
           ],
         ),
         drawer: AppDrawerNavigation(),
@@ -47,7 +50,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _body() {
+  Widget _body(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(12),
       child: Column(
@@ -64,7 +67,7 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 12),
-          _addGoalTile(),
+          _addGoalTile(context),
         ],
       ),
     );
@@ -149,12 +152,14 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _addGoalTile() {
+  Widget _addGoalTile(BuildContext context) {
     return SizedBox(
       height: 48,
       width: 300,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, RoutesNames.goal);
+        },
         child: const Text("Add Goal",
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
       ),
