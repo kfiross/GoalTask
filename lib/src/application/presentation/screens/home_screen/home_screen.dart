@@ -64,7 +64,7 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 12),
-          _addTaskTile(),
+          _addGoalTile(),
         ],
       ),
     );
