@@ -10,8 +10,8 @@ import 'package:sealed_flutter_bloc/sealed_flutter_bloc.dart';
 
 import 'state/home_screen_events.dart';
 
-typedef TasksBlocBuilder
-    = SealedBlocBuilder4<HomeCubit, BaseHomeState, Initial, Loading, Success, Failure>;
+typedef TasksBlocBuilder = SealedBlocBuilder4<HomeCubit, BaseHomeState, Initial,
+    Loading, Success, Failure>;
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -28,12 +28,12 @@ class HomeScreen extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
-          body: Column(
-            children: [
-              _appBar(),
-              Expanded(child: _body()),
-            ],
-          ),
+        body: Column(
+          children: [
+            _appBar(),
+            Expanded(child: _body()),
+          ],
+        ),
         drawer: AppDrawerNavigation(),
       ),
     );
@@ -74,7 +74,8 @@ class HomeScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text("Today's Tasks", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+        const Text("Today's Tasks",
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
         Expanded(
           child: Card(
             color: AppColors.todayBgColor,
@@ -97,7 +98,8 @@ class HomeScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text("Tasks this week", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+        const Text("Tasks this week",
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
         Expanded(
           child: Card(
             child: TasksBlocBuilder(
@@ -130,7 +132,8 @@ class HomeScreen extends StatelessWidget {
       height: 100,
       child: ElevatedButton(
         onPressed: () {},
-        child: const Text("Month", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+        child: const Text("Month",
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
       ),
     );
   }
@@ -140,21 +143,21 @@ class HomeScreen extends StatelessWidget {
       height: 100,
       child: ElevatedButton(
         onPressed: () {},
-        child: const Text("Stats", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+        child: const Text("Stats",
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
       ),
     );
   }
 
-  Widget _addTaskTile() {
+  Widget _addGoalTile() {
     return SizedBox(
       height: 48,
       width: 300,
       child: ElevatedButton(
         onPressed: () {},
-        child: const Text("Add Task", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+        child: const Text("Add Goal",
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
       ),
     );
   }
-
-
 }
