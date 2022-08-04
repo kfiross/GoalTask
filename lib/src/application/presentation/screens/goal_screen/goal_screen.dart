@@ -44,19 +44,17 @@ class GoalScreen extends StatelessWidget {
       padding: const EdgeInsets.all(12),
       child: Column(
         children: [
-          Expanded(
-            child: TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Search',
-              ),
+          TextField(
+            decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              hintText: 'Search',
             ),
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 5),
           Row(
             children: [
               Expanded(child: _buyingTile()),
-              const SizedBox(width: 20),
+              // const SizedBox(height: 10),
               Expanded(child: _assimilationTile()),
               Expanded(child: _Vacations()),
             ],
@@ -68,33 +66,33 @@ class GoalScreen extends StatelessWidget {
 
   Widget _buyingTile() {
     return SizedBox(
-      height: 100,
+      height: 15,
       child: ElevatedButton(
         onPressed: () {},
         child: const Text("Buying products",
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+            style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold)),
       ),
     );
   }
 
   Widget _assimilationTile() {
     return SizedBox(
-      height: 100,
+      height: 15,
       child: ElevatedButton(
         onPressed: () {},
         child: const Text("Assimilation tasks",
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+            style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold)),
       ),
     );
   }
 
   Widget _Vacations() {
     return SizedBox(
-      height: 100,
+      height: 15,
       child: ElevatedButton(
         onPressed: () {},
         child: const Text("Vacations",
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+            style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold)),
       ),
     );
   }
