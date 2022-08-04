@@ -16,6 +16,29 @@ import 'state/goal_screen_events.dart';
 class GoalScreen extends StatelessWidget {
   GoalScreen({Key? key}) : super(key: key);
 
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        body: Column(
+          children: [
+            _appBar(),
+            Expanded(child: _body()),
+          ],
+        ),
+        drawer: AppDrawerNavigation(),
+      ),
+    );
+  }
+
+  Widget _appBar() {
+    return AppBar(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      iconTheme: const IconThemeData(color: Colors.black),
+    );
+  }
+
   Widget _body() {
     return Container(
       padding: const EdgeInsets.all(12),
@@ -74,11 +97,5 @@ class GoalScreen extends StatelessWidget {
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
       ),
     );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
   }
 }

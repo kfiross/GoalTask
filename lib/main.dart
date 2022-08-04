@@ -5,7 +5,7 @@ import 'package:goal_task/src/core/managers/hive.dart';
 
 import 'src/app.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp();
