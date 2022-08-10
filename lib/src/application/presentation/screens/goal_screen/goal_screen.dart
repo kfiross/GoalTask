@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:goal_task/src/application/data/model/task_model.dart';
 import 'package:goal_task/src/application/presentation/drawers/app_drawer.dart';
@@ -68,7 +70,9 @@ class GoalScreen extends StatelessWidget {
     return SizedBox(
       height: 15,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          BuyingProducts();
+        },
         child: const Text("Buying products",
             style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold)),
       ),
@@ -94,6 +98,46 @@ class GoalScreen extends StatelessWidget {
         child: const Text("Vacations",
             style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold)),
       ),
+    );
+  }
+
+  /* Widget _Buy_car() {
+    return SizedBox(
+        height: 30,
+        child: ElevatedButton(
+          onPressed: () {},
+          child: const Text("BUY CAR",
+              style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold)),
+        ));
+  } */
+}
+
+class BuyingProducts extends StatefulWidget {
+  const BuyingProducts({Key? key}) : super(key: key);
+
+  @override
+  State<BuyingProducts> createState() => BuyingProductsWidgetState();
+}
+
+class BuyingProductsWidgetState extends State<BuyingProducts> {
+  bool _active = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        SizedBox(
+          width: 18,
+          child: SizedBox(
+              height: 30,
+              child: ElevatedButton(
+                onPressed: () {},
+                child: const Text("BUY CAR",
+                    style:
+                        TextStyle(fontSize: 10, fontWeight: FontWeight.bold)),
+              )),
+        ),
+      ],
     );
   }
 }
