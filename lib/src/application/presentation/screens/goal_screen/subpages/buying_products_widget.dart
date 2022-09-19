@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:goal_task/src/core/utils/router.dart';
 
 final List<String> types = [
   "Buy Car",
@@ -19,45 +20,35 @@ class BuyingProductsWidget extends StatelessWidget {
     return GridView.builder(
       shrinkWrap: true,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3,
-          mainAxisSpacing: 12,
-          crossAxisSpacing: 8
-      ),
+          crossAxisCount: 3, mainAxisSpacing: 12, crossAxisSpacing: 8),
       itemCount: 6,
       itemBuilder: (context, index) {
         return ElevatedButton(
           onPressed: () {
+            switch (index) {
+              case 0:
+                Navigator.pushNamed(context, RoutesNames.buy_car);
+                break;
 
+              case 1:
+                {
+                  //statements;
+                }
+                break;
+
+              default:
+                {
+                  //statements;
+                }
+                break;
+            }
           },
-          child: Text("${types[index]}", textAlign: TextAlign.center,),
+          child: Text(
+            "${types[index]}",
+            textAlign: TextAlign.center,
+          ),
         );
       },
     );
   }
 }
-
-// _toFix(){
-//   return Container(
-//     height: 200,
-//     child: Card(
-//       child: Padding(
-//         padding: const EdgeInsets.all(12),
-//         child: Column(
-//           children: [
-//             Row(
-//               children: [
-//                 Row(
-//                   mainAxisSize: MainAxisSize.min,
-//                   children: [
-//                     Text("Buy Car"),
-//                     Icon(Icons.drive_eta),
-//                   ],
-//                 )
-//               ],
-//             ),
-//           ],
-//         ),
-//       ),
-//     ),
-//   );
-// }

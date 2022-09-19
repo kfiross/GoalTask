@@ -111,11 +111,6 @@ class _GoalScreenState extends State<GoalScreen> {
                   });
                 },
               )
-              // Expanded(child: _buyingTile()),
-              // const SizedBox(width: 8),
-              // Expanded(child: _assimilationTile()),
-              // const SizedBox(width: 8),
-              // Expanded(child: _Vacations()),
             ],
           ),
           if (widgetToShow != null) ...{
@@ -128,70 +123,4 @@ class _GoalScreenState extends State<GoalScreen> {
       ),
     );
   }
-
-// Widget _buyingTile() {
-//   return SizedBox(
-//     height: 44,
-//     child: ElevatedButton(
-//       onPressed: () {
-//         setState(() {
-//           widgetToShow = const BuyingProductsWidget();
-//         });
-//       },
-//       style: ElevatedButton.styleFrom(padding: const EdgeInsets.all(4)),
-//       child: Text(
-//         "Buying products",
-//         style: TextStyle(
-//           fontSize: SizeConfig.font.small_plus,
-//           fontWeight: FontWeight.bold,
-//         ),
-//         textAlign: TextAlign.center,
-//       ),
-//     ),
-//   );
-// }
-//
-// Widget _assimilationTile() {
-//   return SizedBox(
-//     height: 44,
-//     child: ElevatedButton(
-//       style: ElevatedButton.styleFrom(padding: const EdgeInsets.all(4)),
-//       onPressed: () {
-//         setState(() {
-//           widgetToShow = const AssimilationTasksWidget();
-//         });
-//       },
-//       child: Text(
-//         "Assimilation tasks",
-//         style: TextStyle(
-//           fontSize: SizeConfig.font.small_plus,
-//           fontWeight: FontWeight.bold,
-//         ),
-//         textAlign: TextAlign.center,
-//       ),
-//     ),
-//   );
-// }
-//
-// Widget _Vacations() {
-//   return SizedBox(
-//     height: 44,
-//     child: ElevatedButton(
-//       style: ElevatedButton.styleFrom(padding: const EdgeInsets.all(4)),
-//       onPressed: () {
-//         setState(() {
-//           widgetToShow = const VacationWidget();
-//         });
-//       },
-//       child: Text(
-//         "Vacations",
-//         style: TextStyle(
-//           fontSize: SizeConfig.font.small_plus,
-//           fontWeight: FontWeight.bold,
-//         ),
-//         textAlign: TextAlign.center,
-//       ),
-//     ),
-//   );
-// }
 }
