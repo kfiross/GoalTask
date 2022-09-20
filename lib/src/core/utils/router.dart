@@ -16,7 +16,7 @@ class RoutesNames {
 
 // ignore: missing_return
 Route<dynamic>? generateRoute(RouteSettings routeSettings) {
-  final args = (routeSettings.arguments) as Map<String, dynamic>? ?? {};
+  // final args = (routeSettings.arguments) as Map<String, dynamic>? ?? {};
 
   switch (routeSettings.name) {
     case RoutesNames.home:

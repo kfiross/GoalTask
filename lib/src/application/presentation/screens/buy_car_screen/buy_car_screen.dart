@@ -28,7 +28,7 @@ class BuyCarScreen extends StatefulWidget {
 
 class _BuyCarScreenState extends State<BuyCarScreen> {
   Widget? widgetToShow;
-  // int _selected = -1;
+  FontWeight font = FontWeight.normal;
 
   final _widgets = [
     const PriceWidget(),
@@ -109,13 +109,15 @@ class _BuyCarScreenState extends State<BuyCarScreen> {
                     onTap: () {
                       setState(() {
                         widgetToShow = _widgets[0];
+                        font = FontWeight.bold;
                       });
                     },
                     child: SizedBox(
                         width: size / 4,
-                        child: const Text(
+                        child: Text(
                           "Price",
                           textAlign: TextAlign.center,
+                          style: TextStyle(fontWeight: font),
                         )),
                   ),
                   InkWell(

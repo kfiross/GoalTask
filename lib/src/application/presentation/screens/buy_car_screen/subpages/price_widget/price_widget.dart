@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:provider/provider.dart';
 import 'subpages.dart';
 
 class PriceWidget extends StatefulWidget {
@@ -12,11 +13,12 @@ class PriceWidget extends StatefulWidget {
 
 class _PriceWidgetState extends State<PriceWidget> {
   Widget? widgetToShow;
-  // int _selected = -1;
+  FontWeight fontMoneyAvailable = FontWeight.normal;
+  FontWeight fontFinancialLoans = FontWeight.normal;
 
   final _widgets = [
     const MoneyAvailable(),
-    // const (),
+    const FinancialLoans(),
     // const (),
   ];
 
@@ -47,34 +49,73 @@ class _PriceWidgetState extends State<PriceWidget> {
                       textAlign: TextAlign.center,
                     )),
                   ]),
-                  Row(children: [
-                    InkWell(
-                        onTap: () {
-                          setState(() {
-                            widgetToShow = _widgets[0];
-                          });
+                  Row(
+                    children: [
+                      InkWell(
+                          onTap: () {
+                            setState(() {
+                              widgetToShow = _widgets[0];
+                              fontMoneyAvailable = FontWeight.bold;
+                              fontFinancialLoans = FontWeight.normal;
+                            });
+                          },
+                          child: SizedBox(
+                              child: Text("Money available",
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      fontWeight: fontMoneyAvailable)))),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      ValueListenableBuilder(
+                        valueListenable: MoneyAvailable.sum,
+                        builder: (context, value, child) {
+                          if (value != 0) {
+                            return Text(
+                              value.toString(),
+                              textAlign: TextAlign.left,
+                            );
+                          } else {
+                            return const Text("");
+                          }
                         },
-                        child: const SizedBox(
-                            child: Text(
-                          "Money available\n",
-                          textAlign: TextAlign.left,
-                        ))),
-                  ]),
+                      ),
+                    ],
+                  ),
                   Row(children: [
                     InkWell(
                         onTap: () {
                           setState(() {
                             widgetToShow = _widgets[1];
+                            fontFinancialLoans = FontWeight.bold;
+                            fontMoneyAvailable = FontWeight.normal;
                           });
                         },
-                        child: const SizedBox(
-                            child: Text(
-                          "Financial loans",
-                          textAlign: TextAlign.left,
-                        )))
+                        child: SizedBox(
+                            child: Text("\nFinancial loans",
+                                textAlign: TextAlign.left,
+                                style:
+                                    TextStyle(fontWeight: fontFinancialLoans))))
                   ]),
+                  Row(
+                    children: [
+                      ValueListenableBuilder(
+                        valueListenable: FinancialLoans.sum,
+                        builder: (context, value, child) {
+                          if (value != 0) {
+                            return Text(
+                              value.toString(),
+                              textAlign: TextAlign.left,
+                            );
+                          } else {
+                            return const Text("");
+                          }
+                        },
+                      ),
+                    ],
+                  ),
                 ]))),
-        // Flex(direction: Axis.horizontal, children: [
         if (widgetToShow != null) ...{
           const SizedBox(
             width: 16,
@@ -82,7 +123,6 @@ class _PriceWidgetState extends State<PriceWidget> {
           ),
           Container(alignment: Alignment.bottomRight, child: widgetToShow!)
         }
-        // ])
       ],
     );
   }
