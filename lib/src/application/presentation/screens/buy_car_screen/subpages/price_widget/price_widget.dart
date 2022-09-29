@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:goal_task/src/application/presentation/screens/buy_car_screen/subpages.dart';
 import 'package:provider/provider.dart';
 import 'subpages.dart';
 
 class PriceWidget extends StatefulWidget {
-  const PriceWidget({Key? key}) : super(key: key);
+  PriceWidget({Key? key}) : super(key: key);
+  ValueNotifier<int> sumPriceWidget = ValueNotifier<int>(0);
 
   @override
   State<PriceWidget> createState() => _PriceWidgetState();
@@ -17,110 +19,139 @@ class _PriceWidgetState extends State<PriceWidget> {
   FontWeight fontFinancialLoans = FontWeight.normal;
 
   final _widgets = [
-    const MoneyAvailable(),
-    const FinancialLoans(),
+    MoneyAvailable(),
+    FinancialLoans(),
     // const (),
   ];
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    // final sizeWidth = MediaQuery.of(context).size.width;
+    // final sizeHeight = MediaQuery.of(context).size.height;
+
+    return Stack(
       children: [
         Container(
-            alignment: Alignment.topLeft,
-            width: 150,
-            height: 200,
-            decoration: const BoxDecoration(
-                color: Color.fromRGBO(245, 252, 183, 1),
-                // border: Border.all(
-                //   color: Colors.white,
-                //   width: 25.0,
-                //   //   style: BorderStyle.solid,
-                // ),
-                borderRadius: BorderRadius.all(Radius.circular(10.0))),
-            child: Container(
-                alignment: Alignment.topLeft,
-                child: Column(children: [
-                  Row(children: const [
-                    SizedBox(height: 8),
-                    SizedBox(
-                        child: Text(
-                      "Price\n",
-                      textAlign: TextAlign.center,
-                    )),
-                  ]),
-                  Row(
-                    children: [
-                      InkWell(
-                          onTap: () {
-                            setState(() {
-                              widgetToShow = _widgets[0];
-                              fontMoneyAvailable = FontWeight.bold;
-                              fontFinancialLoans = FontWeight.normal;
-                            });
-                          },
-                          child: SizedBox(
-                              child: Text("Money available",
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                      fontWeight: fontMoneyAvailable)))),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      ValueListenableBuilder(
-                        valueListenable: MoneyAvailable.sum,
-                        builder: (context, value, child) {
-                          if (value != 0) {
-                            return Text(
-                              value.toString(),
+          // alignment: Alignment.center,
+          width: MediaQuery.of(context).size.width * 0.5,
+          height: MediaQuery.of(context).size.height * 0.4,
+          decoration: const BoxDecoration(
+              color: Color.fromRGBO(245, 252, 183, 1),
+              // border: Border.all(
+              //   color: Colors.white,
+              //   width: 25.0,
+              //   //   style: BorderStyle.solid,
+              // ),
+              borderRadius: BorderRadius.all(Radius.circular(10.0))),
+          child: Column(
+            // alignment: Alignment.topCenter,
+            children: [
+              // Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+              // Row(children: const [
+              const Text(
+                "Price\n",
+                style: TextStyle(fontSize: 20),
+                textAlign: TextAlign.left,
+              ),
+              Row(
+                children: [
+                  InkWell(
+                      onTap: () {
+                        setState(() {
+                          widgetToShow = _widgets[0];
+                          fontMoneyAvailable = FontWeight.bold;
+                          fontFinancialLoans = FontWeight.normal;
+                        });
+                      },
+                      child: SizedBox(
+                          child: Text("\nMoney available",
                               textAlign: TextAlign.left,
-                            );
-                          } else {
-                            return const Text("");
-                          }
-                        },
-                      ),
-                    ],
+                              style: TextStyle(
+                                fontWeight: fontMoneyAvailable,
+                              )))),
+                ],
+              ),
+              Row(
+                children: [
+                  ValueListenableBuilder(
+                    valueListenable: MoneyAvailable
+                    builder: (context, value, child) {
+
+                      if (value != 0) {
+                        return Text(
+                          value.toString(),
+                          textAlign: TextAlign.left,
+                        );
+                      } else {
+                        return const Text("");
+                      }
+                    },
                   ),
-                  Row(children: [
-                    InkWell(
-                        onTap: () {
-                          setState(() {
-                            widgetToShow = _widgets[1];
-                            fontFinancialLoans = FontWeight.bold;
-                            fontMoneyAvailable = FontWeight.normal;
-                          });
-                        },
-                        child: SizedBox(
-                            child: Text("\nFinancial loans",
-                                textAlign: TextAlign.left,
-                                style:
-                                    TextStyle(fontWeight: fontFinancialLoans))))
-                  ]),
-                  Row(
-                    children: [
-                      ValueListenableBuilder(
-                        valueListenable: FinancialLoans.sum,
-                        builder: (context, value, child) {
-                          if (value != 0) {
-                            return Text(
-                              value.toString(),
+                ],
+              ),
+
+              Row(
+                children: [
+                  InkWell(
+                      onTap: () {
+                        setState(() {
+                          widgetToShow = _widgets[1];
+                          fontFinancialLoans = FontWeight.bold;
+                          fontMoneyAvailable = FontWeight.normal;
+                        });
+                      },
+                      child: SizedBox(
+                          child: Text("\nFinancial loans",
                               textAlign: TextAlign.left,
-                            );
-                          } else {
-                            return const Text("");
-                          }
-                        },
-                      ),
-                    ],
+                              style:
+                                  TextStyle(fontWeight: fontFinancialLoans)))),
+                ],
+              ),
+              Row(
+                children: [
+                  ValueListenableBuilder(
+                    valueListenable: widget.,
+                    builder: (context, value, child) {
+                      PriceWidget.sumPriceWidget.value =
+                          sumMoneyAvailable.value + sumFinancialLoans.value;
+                      if (value != 0) {
+                        return Text(
+                          value.toString(),
+                          textAlign: TextAlign.center,
+                        );
+                      } else {
+                        return const Text("");
+                      }
+                    },
                   ),
-                ]))),
-        if (widgetToShow != null) ...{
-          const SizedBox(
-            width: 16,
-            height: 8,
+                ],
+              ),
+              Row(
+                children: const [
+                  Text(
+                    "\n\nSum",
+                    textAlign: TextAlign.left,
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  if (PriceWidget.sumPriceWidget.value != 0) ...{
+                    Text(
+                      "${PriceWidget.sumPriceWidget.value}",
+                      textAlign: TextAlign.left,
+                    ),
+                  },
+                ],
+              )
+            ],
           ),
+        ),
+        if (widgetToShow != null) ...{
+          // const SizedBox(
+          //   width: 150,
+          //   height: 200,
+          // ),
           Container(alignment: Alignment.bottomRight, child: widgetToShow!)
         }
       ],

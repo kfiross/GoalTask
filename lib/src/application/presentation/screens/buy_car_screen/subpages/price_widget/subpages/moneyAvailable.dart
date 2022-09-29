@@ -7,8 +7,11 @@ import 'package:goal_task/src/application/presentation/screens/buy_car_screen/su
 import 'package:provider/provider.dart';
 
 class MoneyAvailable extends StatefulWidget {
-  const MoneyAvailable({Key? key}) : super(key: key);
-  static ValueNotifier<int> sum = ValueNotifier<int>(0);
+  ValueNotifier<int> sumMoneyAvailable = ValueNotifier<int>(0);
+  MoneyAvailable(money, {Key? key}) : super(key: key);
+  // Money(ValueNotifier<int> sumMoneyAvailable) {
+  //   this.sumMoneyAvailable = sumMoneyAvailable;
+  // }
 
   @override
   State<MoneyAvailable> createState() => _MoneyAvailable();
@@ -20,10 +23,14 @@ class _MoneyAvailable extends State<MoneyAvailable> {
 
   Widget? widgetToShow;
 
+  final _widgets = [
+    PriceWidget(),
+    // const (),
+    // const (),
+  ];
+
   void _calculate() {
-    setState(() {
-      MoneyAvailable.sum.value = (current2 + savings2);
-    });
+    widget.sumMoneyAvailable.value = current2 + savings2;
   }
 
   // bool isVisible = true;
@@ -51,74 +58,90 @@ class _MoneyAvailable extends State<MoneyAvailable> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-        behavior: HitTestBehavior.translucent,
-        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-        child: Container(
-            alignment: Alignment.topRight,
-            width: 150,
-            height: 200,
-            decoration: const BoxDecoration(
-                color: Color.fromRGBO(245, 252, 183, 1),
-                borderRadius: BorderRadius.all(Radius.circular(10.0))),
-            child: Container(
-                alignment: Alignment.topRight,
-                child: Column(children: [
-                  Row(
-                    children: const [Text("Money Available")],
-                  ),
-                  Row(children: [
-                    Expanded(
-                      child: TextField(
-                        decoration: const InputDecoration(labelText: "Current"),
-                        keyboardType: TextInputType.number,
-                        inputFormatters: <TextInputFormatter>[
-                          FilteringTextInputFormatter.digitsOnly
-                        ],
-                        onSubmitted: (String value) {},
-                        onChanged: (value) {
-                          current2 = int.tryParse(value) ?? 0;
-                          _calculate();
+    return Stack(
+      children: [
+        Container(
+          alignment: Alignment.topCenter,
+          width: MediaQuery.of(context).size.width * 0.5,
+          height: MediaQuery.of(context).size.height * 0.4,
+          decoration: const BoxDecoration(
+              color: Color.fromRGBO(245, 252, 183, 1),
+              borderRadius: BorderRadius.all(Radius.circular(10.0))),
+          // child: Center(
+          child: Column(
+              // mainAxisAlignment: MainAxisAlignment.center,
+              // mainAxisSize: MainAxisSize.max,
+              children: [
+                const Text(
+                  "Money Available", style: TextStyle(fontSize: 20),
+                  // textAlign: TextAlign.center,
+                ),
+                TextField(
+                  style: const TextStyle(color: Colors.blue),
+                  textAlign: TextAlign.center,
+                  decoration: const InputDecoration(labelText: "Current"),
+                  keyboardType: TextInputType.number,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.digitsOnly
+                  ],
+                  onSubmitted: (String value) {},
+                  onChanged: (value) {
+                    current2 = int.tryParse(value) ?? 0;
+                    _calculate();
+                  },
+                  // controller: current,
+                ),
+                TextField(
+                  style: const TextStyle(color: Colors.blue),
+                  textAlign: TextAlign.center,
+                  decoration: const InputDecoration(labelText: "Savings"),
+                  keyboardType: TextInputType.number,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.digitsOnly
+                  ],
+                  onSubmitted: (String value) {},
+                  onChanged: (value2) {
+                    savings2 = int.tryParse(value2) ?? 0;
+                    _calculate();
+                  },
+                  controller: savings,
+                ),
+                const Text(
+                  "\n\n\nSum\n\n\n",
+                  textAlign: TextAlign.left,
+                  style: TextStyle(fontSize: 15),
+                ),
+                if (widget.sumMoneyAvailable.value != 0) ...{
+                  Text("${widget.sumMoneyAvailable.value}"),
+                },
+                Expanded(
+                    child: Column(
+                  children: [
+                    InkWell(
+                        onTap: () {
+                          setState(() {
+                            widgetToShow = _widgets[0];
+                            FocusManager.instance.primaryFocus?.unfocus();
+                          });
                         },
-                        controller: current,
-                      ),
-                    )
-                  ]),
-
-                  Row(children: [
-                    Expanded(
-                      child: TextField(
-                        decoration: const InputDecoration(labelText: "Savings"),
-                        keyboardType: TextInputType.number,
-                        inputFormatters: <TextInputFormatter>[
-                          FilteringTextInputFormatter.digitsOnly
-                        ],
-                        onSubmitted: (String value) {},
-                        onChanged: (value2) {
-                          savings2 = int.tryParse(value2) ?? 0;
-                          _calculate();
-                        },
-                        controller: savings,
-                      ),
-                    )
-                  ]),
-                  Expanded(
-                      child: Row(children: [
-                    const Text(
-                      "Sum\n\n\n",
-                      textAlign: TextAlign.left,
-                    ),
-                    if (MoneyAvailable.sum.value != 0) ...{
-                      Text("${MoneyAvailable.sum.value}"),
-                    }
-                  ])),
-
-                  // if (widgetToShow != null) ...{
-                  //   const SizedBox(height: 8),
-                  //   Container(
-                  //     child: widgetToShow!,
-                  //   )
-                  // }
-                ]))));
+                        child: const SizedBox(
+                            child: Text(
+                          "\n<",
+                          style: TextStyle(fontSize: 20),
+                          textAlign: TextAlign.center,
+                        )))
+                  ],
+                ))
+              ]),
+          // )
+        ),
+        if (widgetToShow != null) ...{
+          const SizedBox(height: 8),
+          Container(
+            child: widgetToShow!,
+          )
+        }
+      ],
+    );
   }
 }

@@ -6,9 +6,10 @@ import 'package:flutter/painting.dart';
 import 'package:goal_task/src/application/presentation/screens/buy_car_screen/subpages/price_widget/price_widget.dart';
 import 'package:provider/provider.dart';
 
+
 class FinancialLoans extends StatefulWidget {
-  const FinancialLoans({Key? key}) : super(key: key);
-  static ValueNotifier<int> sum = ValueNotifier<int>(0);
+  FinancialLoans({Key? key}) : super(key: key);
+  ValueNotifier<int> sumFinancialLoans = ValueNotifier<int>(0);
 
   @override
   State<FinancialLoans> createState() => _FinancialLoans();
@@ -20,10 +21,14 @@ class _FinancialLoans extends State<FinancialLoans> {
 
   Widget? widgetToShow;
 
+  final _widgets = [
+    const PriceWidget(),
+    // const (),
+    // const (),
+  ];
+
   void _calculate() {
-    setState(() {
-      FinancialLoans.sum.value = (companyA2 + companyB2);
-    });
+    sumFinancialLoans.value = companyA2 + companyB2;
   }
 
   // bool isVisible = true;
@@ -51,79 +56,101 @@ class _FinancialLoans extends State<FinancialLoans> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-        behavior: HitTestBehavior.translucent,
-        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-        child: Container(
-            alignment: Alignment.topRight,
-            width: 150,
-            height: 200,
+    return Stack(
+      children: [
+        Container(
+            alignment: Alignment.topCenter,
+            width: MediaQuery.of(context).size.width * 0.5,
+            height: MediaQuery.of(context).size.height * 0.4,
             decoration: const BoxDecoration(
                 color: Color.fromRGBO(245, 252, 183, 1),
                 borderRadius: BorderRadius.all(Radius.circular(10.0))),
-            child: Container(
-                alignment: Alignment.topRight,
-                child: Column(children: [
-                  Row(
-                    children: const [Text("Financial Loans\n")],
+            child: Column(children: [
+              const Text(
+                "Financial Loans\n",
+                style: TextStyle(fontSize: 20),
+              ),
+              Row(
+                children: const [
+                  Text("Link to our database"),
+                ],
+              ),
+              Row(children: [
+                Expanded(
+                  child: TextField(
+                    style: const TextStyle(color: Colors.blue),
+                    textAlign: TextAlign.center,
+                    decoration: const InputDecoration(labelText: "Company A"),
+                    keyboardType: TextInputType.number,
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter.digitsOnly
+                    ],
+                    onSubmitted: (String value) {},
+                    onChanged: (value) {
+                      companyA2 = int.tryParse(value) ?? 0;
+                      _calculate();
+                    },
+                    controller: companyA,
                   ),
-                  Row(
-                    children: const [Text("Link to our database")],
+                )
+              ]),
+              Row(children: [
+                Expanded(
+                  child: TextField(
+                    style: const TextStyle(color: Colors.blue),
+                    textAlign: TextAlign.center,
+                    decoration: const InputDecoration(labelText: "Company B"),
+                    keyboardType: TextInputType.number,
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter.digitsOnly
+                    ],
+                    onSubmitted: (String value) {},
+                    onChanged: (value2) {
+                      companyB2 = int.tryParse(value2) ?? 0;
+                      _calculate();
+                    },
+                    controller: companyB,
                   ),
-                  Row(children: [
-                    Expanded(
-                      child: TextField(
-                        decoration:
-                            const InputDecoration(labelText: "Company A"),
-                        keyboardType: TextInputType.number,
-                        inputFormatters: <TextInputFormatter>[
-                          FilteringTextInputFormatter.digitsOnly
-                        ],
-                        onSubmitted: (String value) {},
-                        onChanged: (value) {
-                          companyA2 = int.tryParse(value) ?? 0;
-                          _calculate();
-                        },
-                        controller: companyA,
-                      ),
-                    )
-                  ]),
-
-                  Row(children: [
-                    Expanded(
-                      child: TextField(
-                        decoration:
-                            const InputDecoration(labelText: "Company B"),
-                        keyboardType: TextInputType.number,
-                        inputFormatters: <TextInputFormatter>[
-                          FilteringTextInputFormatter.digitsOnly
-                        ],
-                        onSubmitted: (String value) {},
-                        onChanged: (value2) {
-                          companyB2 = int.tryParse(value2) ?? 0;
-                          _calculate();
-                        },
-                        controller: companyB,
-                      ),
-                    )
-                  ]),
-                  Expanded(
-                      child: Row(children: [
-                    const Text(
-                      "Sum\n\n\n",
-                      textAlign: TextAlign.left,
-                    ),
-                    if (FinancialLoans.sum.value != 0) ...{
-                      Text("${FinancialLoans.sum.value}"),
-                    }
-                  ])),
-
-                  // if (widgetToShow != null) ...{
-                  //   const SizedBox(height: 8),
-                  //   Container(
-                  //     child: widgetToShow!,
-                  //   )
-                  // }
-                ]))));
+                )
+              ]),
+              Row(
+                children: [
+                  Text(
+                    "\nSum\n",
+                    textAlign: TextAlign.left,
+                    style: TextStyle(fontSize: 15),
+                  ),
+                  if (sumFinancialLoans.value != 0) ...{
+                    Text(" ${sumFinancialLoans.value}"),
+                  },
+                ],
+              ),
+              Expanded(
+                  child: Column(
+                children: [
+                  InkWell(
+                      onTap: () {
+                        setState(() {
+                          widgetToShow = _widgets[0];
+                          FocusManager.instance.primaryFocus?.unfocus();
+                        });
+                      },
+                      child: const SizedBox(
+                          child: Text(
+                        "\n<",
+                        style: TextStyle(fontSize: 20),
+                        textAlign: TextAlign.center,
+                      )))
+                ],
+              ))
+            ])),
+        if (widgetToShow != null) ...{
+          const SizedBox(height: 8),
+          Container(
+            child: widgetToShow!,
+          )
+        }
+      ],
+    );
   }
 }

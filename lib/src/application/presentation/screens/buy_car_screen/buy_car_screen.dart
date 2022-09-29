@@ -31,7 +31,7 @@ class _BuyCarScreenState extends State<BuyCarScreen> {
   FontWeight font = FontWeight.normal;
 
   final _widgets = [
-    const PriceWidget(),
+    PriceWidget(),
     const ManufacturerWidget(),
     const ModelWidget(),
   ];
@@ -147,6 +147,25 @@ class _BuyCarScreenState extends State<BuyCarScreen> {
                         )),
                   ),
                 ]),
+                Row(
+                  children: [
+                    ValueListenableBuilder(
+                      valueListenable: PriceWidget.sumPriceWidget,
+                      builder: (context, value, child) {
+                        if (value != 0) {
+                          return SizedBox(
+                              width: size / 4,
+                              child: Text(
+                                value.toString(),
+                                textAlign: TextAlign.center,
+                              ));
+                        } else {
+                          return const Text("");
+                        }
+                      },
+                    )
+                  ],
+                ),
                 Row(children: [
                   SizedBox(
                     width: size / 11,
