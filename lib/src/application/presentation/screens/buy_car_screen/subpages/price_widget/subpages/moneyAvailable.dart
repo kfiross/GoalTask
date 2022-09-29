@@ -23,11 +23,7 @@ class _MoneyAvailable extends State<MoneyAvailable> {
 
   Widget? widgetToShow;
 
-  final _widgets = [
-    PriceWidget(),
-    // const (),
-    // const (),
-  ];
+
 
   void _calculate() {
     widget.sumMoneyAvailable.value = current2 + savings2;
@@ -58,6 +54,12 @@ class _MoneyAvailable extends State<MoneyAvailable> {
 
   @override
   Widget build(BuildContext context) {
+    final _widgets = [
+      PriceWidget(widget.sumMoneyAvailable),
+      // const (),
+      // const (),
+    ];
+
     return Stack(
       children: [
         Container(

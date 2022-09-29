@@ -6,8 +6,10 @@ import 'package:provider/provider.dart';
 import 'subpages.dart';
 
 class PriceWidget extends StatefulWidget {
-  PriceWidget({Key? key}) : super(key: key);
-  ValueNotifier<int> sumPriceWidget = ValueNotifier<int>(0);
+  final ValueNotifier<int> sumMoneyAvailable;
+  PriceWidget(this.sumMoneyAvailable, {Key? key}) : super(key: key);
+
+ ValueNotifier<int> sumPriceWidget = ValueNotifier<int>(0);
 
   @override
   State<PriceWidget> createState() => _PriceWidgetState();
@@ -74,7 +76,7 @@ class _PriceWidgetState extends State<PriceWidget> {
               Row(
                 children: [
                   ValueListenableBuilder(
-                    valueListenable: MoneyAvailable
+                    valueListenable: widget.sumMoneyAvailable,
                     builder: (context, value, child) {
 
                       if (value != 0) {
@@ -110,10 +112,10 @@ class _PriceWidgetState extends State<PriceWidget> {
               Row(
                 children: [
                   ValueListenableBuilder(
-                    valueListenable: widget.,
+                    valueListenable: widget.sumMoneyAvailable,
                     builder: (context, value, child) {
-                      PriceWidget.sumPriceWidget.value =
-                          sumMoneyAvailable.value + sumFinancialLoans.value;
+                      widget.sumPriceWidget.value =
+                          widget.sumMoneyAvailable.value + sumFinancialLoans.value;
                       if (value != 0) {
                         return Text(
                           value.toString(),
@@ -136,9 +138,9 @@ class _PriceWidgetState extends State<PriceWidget> {
               ),
               Row(
                 children: [
-                  if (PriceWidget.sumPriceWidget.value != 0) ...{
+                  if (widget.sumPriceWidget.value != 0) ...{
                     Text(
-                      "${PriceWidget.sumPriceWidget.value}",
+                      "${widget.sumPriceWidget.value}",
                       textAlign: TextAlign.left,
                     ),
                   },

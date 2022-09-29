@@ -7,7 +7,7 @@ import 'core/utils/size_config.dart';
 import 'core/utils/router.dart' as router;
 
 class App extends StatelessWidget {
-  const App({Key? key}) : super(key: key);
+   const App({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
